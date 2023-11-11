@@ -1,0 +1,18 @@
+
+###################################################
+#
+# The following rule removes the last 16 characters of the date fields
+# If left alone it won't display on Primo. Also this will make it only display the year
+#
+###################################################
+
+rule "remove last 16 characters in date "
+when
+	(TRUE)
+then
+	set TEMP"1" to xpath "//*[local-name()='date']"
+	remove substring using regex (TEMP"1",".{16}$")
+	set TEMP"1" in "dc"."date" 
+end
+
+
