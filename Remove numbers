@@ -1,0 +1,14 @@
+###################################################
+#
+# Rule to remove numbers from creator field
+#
+###################################################
+
+rule "remove number and brackets in creator1"
+when
+  exist "//*[local-name()='creator'][1]"
+then
+  set TEMP"1" to xpath "//*[local-name()='creator'][1]"
+  remove string (TEMP"1","[0-9]")
+  set TEMP"1" in "dc"."creator" 
+end
