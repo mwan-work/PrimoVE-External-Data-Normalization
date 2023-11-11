@@ -2,11 +2,11 @@
 ###################################################
 #
 # The following rule removes the last 16 characters of the date fields
-# If left alone it won't display on Primo. Also this will make it only display the year
+# 
 #
 ###################################################
 
-rule "remove last 16 characters in date "
+rule "remove last 16 characters in date"
 when
 	(TRUE)
 then
