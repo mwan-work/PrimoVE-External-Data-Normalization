@@ -4,7 +4,7 @@
 #
 ###################################################
 
-rule "remove number and brackets in creator1"
+rule "remove number and in creator1"
 when
   exist "//*[local-name()='creator'][1]"
 then
