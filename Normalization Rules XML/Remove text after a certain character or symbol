@@ -1,3 +1,9 @@
+###################################################
+#
+# Rule to remove all characters after a comma
+#
+###################################################
+
 rule "Remove everything after a comma"
 when
 exist "//*[local-name()='title'][1]"
