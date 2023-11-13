@@ -1,0 +1,7 @@
+rule "Detect name"
+when
+  exist "//*[local-name()='physloc'][contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'main')]
+then
+  set "Main Library" in "discovery"."local14"
+
+end
