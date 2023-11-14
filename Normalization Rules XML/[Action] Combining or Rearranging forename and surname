@@ -16,3 +16,4 @@ rule "RULE CREATOR1"
 	concatenate with delimiter (TEMP"1",TEMP"2"," ")
 	set TEMP"1" in "dc"."creator"
 end
+
