@@ -1,0 +1,18 @@
+#############################################
+#
+# If forename and surname a clearly identified by an element and/or attribute
+# Sets forename and surname into TEMP fields and then combines them to form full name
+#
+#############################################
+
+
+rule "RULE CREATOR1"
+
+	when
+	exist "//metadata/ead/archdesc/controlaccess/persname[1]"
+	then
+	set TEMP"1" to xpath "//metadata/ead/archdesc/controlaccess/persname[1]/emph[@altrender='forename']"
+	set TEMP"2" to xpath "//metadata/ead/archdesc/controlaccess/persname[1]/emph[@altrender='surname']"
+	concatenate with delimiter (TEMP"1",TEMP"2"," ")
+	set TEMP"1" in "dc"."creator"
+end
