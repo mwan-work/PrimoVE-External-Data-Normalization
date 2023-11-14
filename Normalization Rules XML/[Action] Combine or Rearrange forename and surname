@@ -2,15 +2,16 @@
 #
 # If forename and surname a clearly identified by an element and/or attribute
 # Sets forename and surname into TEMP fields and then combines them to form full name
+# Below is for an example record using EAD metadata format
 #
 #############################################
 
 
 rule "Combine names"
-
-	when
+when
 	exist "//metadata/ead/archdesc/controlaccess/persname[1]"
-	then
+
+then
 	set TEMP"1" to xpath "//metadata/ead/archdesc/controlaccess/persname[1]/emph[@altrender='forename']"
 	set TEMP"2" to xpath "//metadata/ead/archdesc/controlaccess/persname[1]/emph[@altrender='surname']"
 	concatenate with delimiter (TEMP"1",TEMP"2"," ")
@@ -27,15 +28,23 @@ end
 
 rule "Rearrange name"
 when
-exist "//*[local-name()='creator'][1]"
+	exist "//*[local-name()='creator'][1][contains(text(), ',')]"
+	#Checks the existence of a comma in the first creator field
+	#The rule won't run if there is no comma
 then
 
-set TEMP"1" to xpath "//*[local-name()='creator'][1]"
-remove substring using regex (TEMP"1","^(.*),")
+	set TEMP"1" to xpath "//*[local-name()='creator'][1]"
+	remove substring using regex (TEMP"1","^(.*),")
+	#Puts the string into TEMP1, removes the comma and everything BEFORE it. Leaving only the forename
 
-set TEMP"2" to xpath "//*[local-name()='creator'][1]"
-remove substring using regex (TEMP"2","(,.*)")
 
-concatenate with delimiter (TEMP"1",TEMP"2"," ")
-set TEMP"1" in "dc"."creator"
+	set TEMP"2" to xpath "//*[local-name()='creator'][1]"
+	remove substring using regex (TEMP"2","(,.*)")
+	#Puts the string into TEMP2, removes the comma and everything AFTER it. Leaving only the surname
+
+	concatenate with delimiter (TEMP"1",TEMP"2"," ")
+	#Combine so to have forename appear first and surname appear second, using a space as a delimitter.
+
+	set TEMP"1" in "dc"."creator"
+	#New re-arranged name is set into dc.creator
 end
