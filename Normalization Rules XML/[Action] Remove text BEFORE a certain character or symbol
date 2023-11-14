@@ -4,7 +4,7 @@
 #
 ###################################################
 
-rule "Remove everything after a comma"
+rule "Remove everything before a comma"
 when
 exist "//*[local-name()='title'][1]"
 then
@@ -20,7 +20,7 @@ end
 #
 ###################################################
 
-rule "Remove everything after a comma"
+rule "Remove comma and everything before it"
 when
 exist "//*[local-name()='title'][1]"
 then
@@ -36,7 +36,7 @@ end
 #
 ###################################################
 
-rule "Remove everything after a comma"
+rule "Remove everything after a comma 4 characters"
 when
 exist "//*[local-name()='title'][1]"
 then
