@@ -1,6 +1,6 @@
 ###################################################
 #
-# Rule to remove alphabet from title field
+# Rule to remove roman alphabet from title field
 #
 ###################################################
 
@@ -12,3 +12,42 @@ then
   remove string (TEMP"1","^[a-zA-Z]*$")
   set TEMP"1" in "dc"."title" 
 end
+
+###################################################
+#
+# Rule to remove non roman characters from title field
+#
+###################################################
+
+rule "remove non roman"
+when
+  exist "//*[local-name()='title'][1]"
+then
+  set TEMP"1" to xpath "//*[local-name()='title'][1]"
+  remove string (TEMP"1",".*[^a-zA-Z].*")
+  set TEMP"1" in "dc"."title" 
+end
+
+###################################################
+#
+# Rule to have roman title display in dc.title, and non roman title in dc.alternative
+# A combination of rules above
+#
+###################################################
+
+rule "roman title and non roman alt"
+when
+  exist "//*[local-name()='title'][1]"
+then
+
+
+  set TEMP"1" to xpath "//*[local-name()='title'][1]"
+  remove substring using regex (TEMP"1","^[a-zA-Z]*$")
+  set TEMP"1" in "dc"."title" 
+
+  set TEMP"2" to xpath "//*[local-name()='title'][1]"
+  remove substring using regex (TEMP"2","^[^a-zA-Z]*$")
+  set TEMP"2" in "dc"."alternative" 
+
+end
+
