@@ -1,0 +1,14 @@
+###################################################
+#
+# Rule to remove alphabet from title field
+#
+###################################################
+
+rule "remove alpha"
+when
+  exist "//*[local-name()='title'][1]"
+then
+  set TEMP"1" to xpath "//*[local-name()='title'][1]"
+  remove string (TEMP"1","^[a-zA-Z]*$")
+  set TEMP"1" in "dc"."title" 
+end
