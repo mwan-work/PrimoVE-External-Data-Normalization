@@ -1,0 +1,14 @@
+###################################################
+#
+# Rule to remove everything in between bracket/parentheses
+#
+###################################################
+
+rule "Remove everything inside brackets"
+when
+  exist "//*[local-name()='title'][1]"
+then
+  set TEMP"1" to xpath "//*[local-name()='title'][1]"
+  remove substring using regex (TEMP"1","\((.*?)\)")
+  set TEMP"1" in "dc"."title"
+end
