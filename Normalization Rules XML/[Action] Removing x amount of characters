@@ -1,7 +1,7 @@
 
 ###################################################
 #
-# The following rule removes the last 16 characters of the date fields
+# The following rule removes the LAST 16 characters of the date fields
 # 
 #
 ###################################################
@@ -14,5 +14,23 @@ then
 	remove substring using regex (TEMP"1",".{16}$")
 	set TEMP"1" in "dc"."date" 
 end
+
+
+###################################################
+#
+# The following rule removes the FIRST 10 characters of the date fields
+# 
+#
+###################################################
+
+rule "remove last 16 characters in date"
+when
+	(TRUE)
+then
+	set TEMP"1" to xpath "//*[local-name()='date']"
+	remove substring using regex (TEMP"1","^.{10}")
+	set TEMP"1" in "dc"."date" 
+end
+
 
 
