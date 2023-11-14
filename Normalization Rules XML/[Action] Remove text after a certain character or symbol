@@ -1,6 +1,6 @@
 ###################################################
 #
-# Rule to remove EVERYTHING after a comma
+# Rule to remove everything AFTER a comma
 #
 ###################################################
 
@@ -12,6 +12,26 @@ set TEMP"1" to xpath "//*[local-name()='title'][1]"
 remove substring using regex (TEMP"1","(?<=,).*")
 set TEMP"1" in "dc"."title"
 end
+
+
+###################################################
+#
+# Rule to remove everything AFTER a comma, INCLUDING the comma itself
+#
+###################################################
+
+rule "Remove everything after a comma"
+when
+exist "//*[local-name()='title'][1]"
+then
+set TEMP"1" to xpath "//*[local-name()='title'][1]"
+remove substring using regex (TEMP"1","(,.*)")
+set TEMP"1" in "dc"."title"
+end
+
+
+
+
 
 ###################################################
 #
