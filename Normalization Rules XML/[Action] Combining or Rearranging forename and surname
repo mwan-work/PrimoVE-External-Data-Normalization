@@ -29,10 +29,12 @@ rule "Rearrange name"
 when
 exist "//*[local-name()='creator'][1]"
 then
+
 set TEMP"1" to xpath "//*[local-name()='creator'][1]"
 remove substring using regex (TEMP"1","(,.*)")
-set TEMP"2" to xpath "//*[local-name()='creator'][1]"
 
+set TEMP"2" to xpath "//*[local-name()='creator'][1]"
+remove substring using regex (TEMP"2","^(.*),")
 
 concatenate with delimiter (TEMP"1",TEMP"2"," ")
 set TEMP"1" in "dc"."creator"
