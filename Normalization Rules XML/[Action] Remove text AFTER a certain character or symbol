@@ -35,7 +35,7 @@ end
 
 ###################################################
 #
-# Rule to remove 4 characters after a comma
+# Rule to remove 4 characters AFTER a comma
 #
 ###################################################
 
