@@ -1,7 +1,7 @@
 ###################################################
 #
 # Rule to remove bracket/parentheses and everything inside
-# e.g. 'John (Smith)' --> 'John' 
+# e.g. 'Jonathan (John) Smith' --> 'Jonathan Smith' 
 #
 ###################################################
 
