@@ -7,7 +7,7 @@ remove substring using regex (TEMP"1","^\\w+")
 set TEMP"1" in "dc"."title"
 
 set TEMP"2" to xpath "//*[local-name()='title'][1]"
-remove substring using regex (TEMP"2","^[^ ]+ ([^ ]+)")
+remove substring using regex (TEMP"2",".*(?= )")
 set TEMP"2" in "dc"."title"
 
 end
