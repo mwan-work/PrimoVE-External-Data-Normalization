@@ -1,13 +1,41 @@
 rule "test"
 when
-exist "//*[local-name()='title'][1]"
+exist "//*[local-name()='creator'][1]"
 then
-set TEMP"1" to xpath "//*[local-name()='title'][1]"
-replace string by string (TEMP"1","^a","A")
+set TEMP"1" to xpath "//*[local-name()='creator'][1]"
+lower case (TEMP"1")
+replace string by string (TEMP"1","\\ba","A")
+replace string by string (TEMP"1","\\bb","B")
+replace string by string (TEMP"1","\\bc","C")
+replace string by string (TEMP"1","\\bd","D")
+replace string by string (TEMP"1","\\be","E")
+replace string by string (TEMP"1","\\bf","F")
+replace string by string (TEMP"1","\\bg","G")
+replace string by string (TEMP"1","\\bh","H")
+replace string by string (TEMP"1","\\bi","I")
+replace string by string (TEMP"1","\\bj","J")
+replace string by string (TEMP"1","\\bk","K")
+replace string by string (TEMP"1","\\bl","L")
+replace string by string (TEMP"1","\\bm","M")
+replace string by string (TEMP"1","\\bn","N")
+replace string by string (TEMP"1","\\bo","O")
+replace string by string (TEMP"1","\\bp","P")
+replace string by string (TEMP"1","\\bq","Q")
+replace string by string (TEMP"1","\\br","R")
+replace string by string (TEMP"1","\\bs","S")
+replace string by string (TEMP"1","\\bt","T")
+replace string by string (TEMP"1","\\bu","U")
+replace string by string (TEMP"1","\\bv","V")
+replace string by string (TEMP"1","\\bw","W")
+replace string by string (TEMP"1","\\bx","X")
+replace string by string (TEMP"1","\\by","Y")
+replace string by string (TEMP"1","\\bz","Z")
+
 set TEMP"1" in "dc"."title"
 
 
 end
+
 
 <title>first second third</title>
 [starts-with(text(),'A')]
