@@ -1,6 +1,6 @@
 ##################################
 #
-# Following rules useful if you have both English and original non roman names (e.g. Chinese, Japanese, Hebrew etc) in a single field
+# Following rules useful if you have both roman and non roman names (e.g. Chinese, Japanese, Hebrew etc) in a single field
 # e.g. <title>西遊記 Journey to the West</title>
 #
 ###############################
