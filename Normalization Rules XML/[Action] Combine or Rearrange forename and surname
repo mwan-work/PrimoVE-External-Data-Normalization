@@ -2,7 +2,7 @@
 #
 # If forename and surname a clearly identified by an element and/or attribute
 # Sets forename and surname into TEMP fields and then combines them to form full name
-# Below is for an example record using EAD metadata format
+# Below is for an example record from EAD metadata format
 #
 #############################################
 
@@ -14,7 +14,10 @@ when
 then
 	set TEMP"1" to xpath "//metadata/ead/archdesc/controlaccess/persname[1]/emph[@altrender='forename']"
 	set TEMP"2" to xpath "//metadata/ead/archdesc/controlaccess/persname[1]/emph[@altrender='surname']"
+	
 	concatenate with delimiter (TEMP"1",TEMP"2"," ")
+	#Combine so to have forename appear first and surname appear second, using a space as a delimitter.
+	
 	set TEMP"1" in "dc"."creator"
 end
 
