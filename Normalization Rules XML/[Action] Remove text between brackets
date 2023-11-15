@@ -1,6 +1,7 @@
 ###################################################
 #
-# Rule to remove everything in between bracket/parentheses
+# Rule to remove bracket/parentheses and everything inside
+# e.g. 'John (Smith)' --> 'John' 
 #
 ###################################################
 
@@ -9,6 +10,6 @@ when
   exist "//*[local-name()='title'][1]"
 then
   set TEMP"1" to xpath "//*[local-name()='title'][1]"
-  remove substring using regex (TEMP"1","\((.*?)\)")
+  remove substring using regex (TEMP"1","\\((.*?)\\)")
   set TEMP"1" in "dc"."title"
 end
