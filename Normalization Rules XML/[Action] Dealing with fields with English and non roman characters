@@ -1,17 +1,33 @@
+##################################
+#
+# Following rules useful if you have both English and original non roman names (e.g. Chinese, Japanese, Hebrew etc) in a single field
+# e.g. <title>西遊記 Journey to the West</title>
+#
+###############################
+
 ###################################################
 #
-# Rule to remove roman alphabet from title field
+# Remove roman letters from title field
 #
 ###################################################
 
-rule "remove alpha"
+rule "remove roman letters only"
 when
   exist "//*[local-name()='title'][1]"
 then
+
+
   set TEMP"1" to xpath "//*[local-name()='title'][1]"
-  remove string (TEMP"1","^[a-zA-Z]*$")
+
+  remove string (TEMP"1","[A-z ]")
+  #to not delete any spaces, a 'space' is included in the regex
+  #use regex "[A-z0-9 ]" if you also want to remove numbers
+
   set TEMP"1" in "dc"."title" 
+
+
 end
+
 
 ###################################################
 #
@@ -19,13 +35,19 @@ end
 #
 ###################################################
 
-rule "remove non roman"
+rule "remove non roman characters  only"
 when
   exist "//*[local-name()='title'][1]"
 then
+
   set TEMP"1" to xpath "//*[local-name()='title'][1]"
-  remove string (TEMP"1",".*[^a-zA-Z].*")
+  
+  remove string (TEMP"1","[^A-z ]")
+  #to not delete any spaces, a 'space' is included in the regex
+  #use regex "[^A-z0-9 ]" if you also want to keep numbers
+
   set TEMP"1" in "dc"."title" 
+
 end
 
 ###################################################
@@ -40,13 +62,12 @@ when
   exist "//*[local-name()='title'][1]"
 then
 
-
   set TEMP"1" to xpath "//*[local-name()='title'][1]"
-  remove substring using regex (TEMP"1","^[a-zA-Z]*$")
+  remove string (TEMP"1","[^A-z ]")
   set TEMP"1" in "dc"."title" 
 
   set TEMP"2" to xpath "//*[local-name()='title'][1]"
-  remove substring using regex (TEMP"2","^[^a-zA-Z]*$")
+  remove string (TEMP"2","[A-z ]")
   set TEMP"2" in "dc"."alternative" 
 
 end
