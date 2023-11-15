@@ -2,11 +2,12 @@ rule "test"
 when
 exist "//*[local-name()='title'][1]"
 then
-set TEMP"1" to xpath "//*[local-name()='title'][1][starts-with(text(),'A')]"
-remove substring using regex (TEMP"1","^A")
+set TEMP"1" to xpath "//*[local-name()='title'][1]"
+replace string by string (TEMP"1","^a","A")
 set TEMP"1" in "dc"."title"
 
 
 end
 
 <title>first second third</title>
+[starts-with(text(),'A')]
