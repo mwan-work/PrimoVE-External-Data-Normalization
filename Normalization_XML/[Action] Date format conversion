@@ -1,6 +1,6 @@
 ###########################################################
 #
-# This rule converts from US format (MM/DD/YYYY) to UK format
+# This rule converts from US format (MM/DD/YYYY) to UK format (DD/MM/YYYY)
 #
 #
 ###########################################################
@@ -11,19 +11,20 @@ when
 exist "//*[local-name()='date'][1]"
 then
 
-#Day
+#Day value into TEMP1
 set TEMP"1" to xpath "//*[local-name()='date'][1]"
 remove substring using regex (TEMP"1","^.*?/")
 remove substring using regex (TEMP"1","(/.*)")
 
-#Month
+#Month value into TEMP2
 set TEMP"2" to xpath "//*[local-name()='date'][1]"
 remove substring using regex (TEMP"2","(/.*)")
 
-#Year
+#Year value into TEMP3
 set TEMP"3" to xpath "//*[local-name()='date'][1]"
 remove substring using regex (TEMP"3","^(.*)/")
 
+#Combine values to form DD/MM/YYYY
 concatenate with delimiter (TEMP"1",TEMP"2","/")
 concatenate with delimiter (TEMP"1",TEMP"3","/")
 
