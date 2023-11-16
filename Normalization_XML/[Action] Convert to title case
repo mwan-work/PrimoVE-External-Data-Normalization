@@ -1,8 +1,9 @@
 ###################################################
 #
-# Rule to convert string to title case
+# Rule to convert string to use title case
 # e.g.  JOHN SMITH --> John Smith
 #       mary ann smith --> Mary Ann Smith
+#       thomas SMITH-jones --> Thomas Smith-Jones
 #
 #####################################################
 
@@ -15,6 +16,7 @@ then
   set TEMP"1" to xpath "//*[local-name()='creator'][1]"
   lower case (TEMP"1")
 
+  #The below uses regex that will replace lower case letter with upper case at the beginnining of each word (only if preceded by a space).
   replace string by string (TEMP"1","\\ba","A")
   replace string by string (TEMP"1","\\bb","B")
   replace string by string (TEMP"1","\\bc","C")
@@ -41,6 +43,34 @@ then
   replace string by string (TEMP"1","\\bx","X")
   replace string by string (TEMP"1","\\by","Y")
   replace string by string (TEMP"1","\\bz","Z")
+
+  #To also include double barrel names, below will replace lower case with upper case if it is preceded by a hyphen
+  replace string by string (TEMP"1","-a","-A")
+  replace string by string (TEMP"1","-b","-B")
+  replace string by string (TEMP"1","-c","-C")
+  replace string by string (TEMP"1","-d","-D")
+  replace string by string (TEMP"1","-e","-E")
+  replace string by string (TEMP"1","-f","-F")
+  replace string by string (TEMP"1","-g","-G")
+  replace string by string (TEMP"1","-h","-H")
+  replace string by string (TEMP"1","-i","-I")
+  replace string by string (TEMP"1","-j","-J")
+  replace string by string (TEMP"1","-k","-K")
+  replace string by string (TEMP"1","-l","-L")
+  replace string by string (TEMP"1","-m","-M")
+  replace string by string (TEMP"1","-n","-N")
+  replace string by string (TEMP"1","-o","-O")
+  replace string by string (TEMP"1","-p","-P")
+  replace string by string (TEMP"1","-q","-Q")
+  replace string by string (TEMP"1","-r","-R")
+  replace string by string (TEMP"1","-s","-S")
+  replace string by string (TEMP"1","-t","-T")
+  replace string by string (TEMP"1","-u","-U")
+  replace string by string (TEMP"1","-v","-V")
+  replace string by string (TEMP"1","-w","-W")
+  replace string by string (TEMP"1","-x","-X")
+  replace string by string (TEMP"1","-y","-Y")
+  replace string by string (TEMP"1","-z","-Z")
 
   set TEMP"1" in "dc"."title"
 
