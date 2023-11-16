@@ -50,10 +50,13 @@ remove substring using regex (TEMP"1","^.*?/")
 remove substring using regex (TEMP"1","(/.*)")
 
 add suffix (TEMP"1","th")
-replace string by string (TEMP"1","01th","1st")
-replace string by string (TEMP"1","02th","2nd")
-replace string by string (TEMP"1","03th","3rd")
 remove substring using regex (TEMP"1","^0")
+add prefix (TEMP"1","/")
+
+replace string by string (TEMP"1","/1th","1st")
+replace string by string (TEMP"1","/2th","2nd")
+replace string by string (TEMP"1","/3th","3rd")
+remove substring using regex (TEMP"1","^/")
 
 
 #Month value into TEMP2
