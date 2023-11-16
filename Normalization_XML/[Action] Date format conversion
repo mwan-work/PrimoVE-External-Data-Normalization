@@ -7,27 +7,27 @@
 
 rule "US DATE to UK DATE"
 when
-exist "//*[local-name()='date'][1]"
+  exist "//*[local-name()='date'][1]"
 then
 
-#Day value into TEMP1
-set TEMP"1" to xpath "//*[local-name()='date'][1]"
-remove substring using regex (TEMP"1","^.*?/")
-remove substring using regex (TEMP"1","(/.*)")
+  #Day value into TEMP1
+  set TEMP"1" to xpath "//*[local-name()='date'][1]"
+  remove substring using regex (TEMP"1","^.*?/")
+  remove substring using regex (TEMP"1","(/.*)")
 
-#Month value into TEMP2
-set TEMP"2" to xpath "//*[local-name()='date'][1]"
-remove substring using regex (TEMP"2","(/.*)")
+  #Month value into TEMP2
+  set TEMP"2" to xpath "//*[local-name()='date'][1]"
+  remove substring using regex (TEMP"2","(/.*)")
 
-#Year value into TEMP3
-set TEMP"3" to xpath "//*[local-name()='date'][1]"
-remove substring using regex (TEMP"3","^(.*)/")
+  #Year value into TEMP3
+  set TEMP"3" to xpath "//*[local-name()='date'][1]"
+  remove substring using regex (TEMP"3","^(.*)/")
 
-#Combine values to form DD/MM/YYYY
-concatenate with delimiter (TEMP"1",TEMP"2","/")
-concatenate with delimiter (TEMP"1",TEMP"3","/")
+  #Combine values to form DD/MM/YYYY
+  concatenate with delimiter (TEMP"1",TEMP"2","/")
+  concatenate with delimiter (TEMP"1",TEMP"3","/")
 
-set TEMP"1" in "dc"."date"
+  set TEMP"1" in "dc"."date"
 
 end
 
@@ -41,50 +41,50 @@ end
 
 rule "US DATE to UK DATE in Written Format"
 when
-exist "//*[local-name()='date'][1]"
+  exist "//*[local-name()='date'][1]"
 then
 
-#Day value into TEMP1
-set TEMP"1" to xpath "//*[local-name()='date'][1]"
-remove substring using regex (TEMP"1","^.*?/")
-remove substring using regex (TEMP"1","(/.*)")
+  #Day value into TEMP1
+  set TEMP"1" to xpath "//*[local-name()='date'][1]"
+  remove substring using regex (TEMP"1","^.*?/")
+  remove substring using regex (TEMP"1","(/.*)")
 
-add suffix (TEMP"1","th")
-remove substring using regex (TEMP"1","^0")
-add prefix (TEMP"1","/")
+  add suffix (TEMP"1","th")
+  remove substring using regex (TEMP"1","^0")
+  add prefix (TEMP"1","/")
 
-replace string by string (TEMP"1","/1th","1st")
-replace string by string (TEMP"1","/2th","2nd")
-replace string by string (TEMP"1","/3th","3rd")
-remove substring using regex (TEMP"1","^/")
+  replace string by string (TEMP"1","/1th","1st")
+  replace string by string (TEMP"1","/2th","2nd")
+  replace string by string (TEMP"1","/3th","3rd")
+  remove substring using regex (TEMP"1","^/")
 
+  #Month value into TEMP2
+  set TEMP"2" to xpath "//*[local-name()='date'][1]"
+  remove substring using regex (TEMP"2","(/.*)")
 
-#Month value into TEMP2
-set TEMP"2" to xpath "//*[local-name()='date'][1]"
-remove substring using regex (TEMP"2","(/.*)")
+  replace string by string (TEMP"2","12","December")
+  replace string by string (TEMP"2","11","November")
+  replace string by string (TEMP"2","10","October")
+  replace string by string (TEMP"2","9","September")
+  replace string by string (TEMP"2","8","August")
+  replace string by string (TEMP"2","7","July")
+  replace string by string (TEMP"2","6","June")
+  replace string by string (TEMP"2","5","May")
+  replace string by string (TEMP"2","4","April")
+  replace string by string (TEMP"2","3","March")
+  replace string by string (TEMP"2","2","February")
+  replace string by string (TEMP"2","1","January")
+  remove substring using regex (TEMP"2","^0")
 
-replace string by string (TEMP"2","12","December")
-replace string by string (TEMP"2","11","November")
-replace string by string (TEMP"2","10","October")
-replace string by string (TEMP"2","09","September")
-replace string by string (TEMP"2","08","August")
-replace string by string (TEMP"2","07","July")
-replace string by string (TEMP"2","06","June")
-replace string by string (TEMP"2","05","May")
-replace string by string (TEMP"2","04","April")
-replace string by string (TEMP"2","03","March")
-replace string by string (TEMP"2","02","February")
-replace string by string (TEMP"2","01","January")
+  #Year value into TEMP3
+  set TEMP"3" to xpath "//*[local-name()='date'][1]"
+  remove substring using regex (TEMP"3","^(.*)/")
 
-#Year value into TEMP3
-set TEMP"3" to xpath "//*[local-name()='date'][1]"
-remove substring using regex (TEMP"3","^(.*)/")
+  #Combine
+  concatenate with delimiter (TEMP"1",TEMP"2"," ")
+  concatenate with delimiter (TEMP"1",TEMP"3"," ")
 
-#Combine
-concatenate with delimiter (TEMP"1",TEMP"2"," ")
-concatenate with delimiter (TEMP"1",TEMP"3"," ")
-
-remove leading and trailing spaces (TEMP"1")
-set TEMP"1" in "dc"."date"
+  remove leading and trailing spaces (TEMP"1")
+  set TEMP"1" in "dc"."date"
 
 end
