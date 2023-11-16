@@ -63,24 +63,24 @@ remove substring using regex (TEMP"1","^/")
 set TEMP"2" to xpath "//*[local-name()='date'][1]"
 remove substring using regex (TEMP"2","(/.*)")
 
-replace string by string (TEMP"2","01","January")
-replace string by string (TEMP"2","02","February")
-replace string by string (TEMP"2","03","March")
-replace string by string (TEMP"2","04","April")
-replace string by string (TEMP"2","05","May")
-replace string by string (TEMP"2","06","June")
-replace string by string (TEMP"2","07","July")
-replace string by string (TEMP"2","08","August")
-replace string by string (TEMP"2","09","September")
-replace string by string (TEMP"2","10","October")
-replace string by string (TEMP"2","11","November")
 replace string by string (TEMP"2","12","December")
+replace string by string (TEMP"2","11","November")
+replace string by string (TEMP"2","10","October")
+replace string by string (TEMP"2","09","September")
+replace string by string (TEMP"2","08","August")
+replace string by string (TEMP"2","07","July")
+replace string by string (TEMP"2","06","June")
+replace string by string (TEMP"2","05","May")
+replace string by string (TEMP"2","04","April")
+replace string by string (TEMP"2","03","March")
+replace string by string (TEMP"2","02","February")
+replace string by string (TEMP"2","01","January")
 
 #Year value into TEMP3
 set TEMP"3" to xpath "//*[local-name()='date'][1]"
 remove substring using regex (TEMP"3","^(.*)/")
 
-#Combine values to form DD/MM/YYYY
+#Combine
 concatenate with delimiter (TEMP"1",TEMP"2"," ")
 concatenate with delimiter (TEMP"1",TEMP"3"," ")
 
