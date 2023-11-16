@@ -1,0 +1,32 @@
+###########################################################
+#
+# This rule converts from US format (MM/DD/YYYY) to UK format
+#
+#
+###########################################################
+
+
+rule "US DATE to UK DATE"
+when
+exist "//*[local-name()='date'][1]"
+then
+
+#Day
+set TEMP"1" to xpath "//*[local-name()='date'][1]"
+remove substring using regex (TEMP"1","^.*?/")
+remove substring using regex (TEMP"1","(/.*)")
+
+#Month
+set TEMP"2" to xpath "//*[local-name()='date'][1]"
+remove substring using regex (TEMP"2","(/.*)")
+
+#Year
+set TEMP"3" to xpath "//*[local-name()='date'][1]"
+remove substring using regex (TEMP"3","^(.*)/")
+
+concatenate with delimiter (TEMP"1",TEMP"2","/")
+concatenate with delimiter (TEMP"1",TEMP"3","/")
+
+set TEMP"1" in "dc"."date"
+
+end
