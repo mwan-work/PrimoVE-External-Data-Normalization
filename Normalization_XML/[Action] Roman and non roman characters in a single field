@@ -1,6 +1,6 @@
 ##################################
 #
-# Following rules useful if you have both roman and non roman names (e.g. Chinese, Japanese, Hebrew etc) in a single field
+# Rules for if you have both roman and non roman names (e.g. Chinese, Japanese, Hebrew etc) in a single field
 # e.g. <title>西遊記 Journey to the West</title>
 #
 ###############################
@@ -8,7 +8,7 @@
 ###################################################
 #
 # Remove roman letters from title field
-#
+# e.g. '西遊記 Journey to the West' --> '西遊記'
 ###################################################
 
 rule "remove roman letters only"
@@ -32,7 +32,7 @@ end
 ###################################################
 #
 # Rule to remove non roman characters from title field
-#
+# e.g. '西遊記 Journey to the West' --> 'Journey to the West'
 ###################################################
 
 rule "remove non roman characters  only"
