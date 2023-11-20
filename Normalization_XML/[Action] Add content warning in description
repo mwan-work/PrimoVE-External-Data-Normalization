@@ -1,0 +1,19 @@
+############################################################################################################################################################
+#
+# A simple rule that adds an additional line in the description for a specific collection (or 'spec' in OAI-PMH). 
+# Primo VE can use basic html, so additional text will show bold.
+#
+# !!Don't forget!!
+# PrimoVE normalization rules start from the bottom. If you want this to show at the TOP of the description, then this will need to be the 
+# 'lowest' rule involving dc.description. If you're not sure then just stick it at the very bottom of your rules.
+#
+############################################################################################################################################################
+
+rule "description rule content warning"
+when
+"//*[local-name()='setSpec']" equals "SpecName"
+
+then
+set "<p><b>Content Warning: As a historical resource, this collection reflects the racial prejudices of the era in which it was created, and some items include language and imagery which is offensive, oppressive and may cause upset. </b></p>" in "dc"."description" 
+
+end
