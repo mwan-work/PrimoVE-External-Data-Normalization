@@ -9,8 +9,8 @@ then
 set TEMP"1" to xpath "//*[local-name()='subject'][1]"
 set TEMP"2" to xpath "//*[local-name()='subject'][1]"
 set TEMP"3" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';')]"
-set TEMP"4" to xpath "//*[local-name()='subject'][1]"
-set TEMP"5" to xpath "//*[local-name()='subject'][1]"
+set TEMP"4" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';')]"
+set TEMP"5" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';'), ';')]"
 
 
 #String before the first semicolon
@@ -33,5 +33,6 @@ set TEMP"1" in "dc"."subject"
 set TEMP"2" in "dc"."subject"
 set TEMP"3" in "dc"."subject"
 set TEMP"4" in "dc"."subject"
+#set TEMP"5" in "dc"."subject"
 end
 <subject>social justice ; higher education ; admissions ; policy ; contextual admissions ; widening participation</subject>
