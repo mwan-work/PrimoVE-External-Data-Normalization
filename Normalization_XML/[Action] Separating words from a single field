@@ -10,19 +10,23 @@ set TEMP"1" to xpath "//*[local-name()='subject'][1]"
 set TEMP"2" to xpath "//*[local-name()='subject'][1][contains(Field, ';') and string-length(translate(Field, translate(Field, ';', ''), '')) = 2]"
 set TEMP"3" to xpath "//*[local-name()='subject'][1][contains(Field, ';') and string-length(translate(Field, translate(Field, ';', ''), '')) = 3]"
 set TEMP"4" to xpath "//*[local-name()='subject'][1]"
-set TEMP"4" to xpath "//*[local-name()='subject'][1]"
+set TEMP"5" to xpath "//*[local-name()='subject'][1]"
 
 
 #String before the first semicolon
 remove substring using regex (TEMP"1","(;.*)")
 
-#String between the second and third semicolons:
+#String between the third and fourth semicolons:
 remove substring using regex (TEMP"2","^([^;]+ ; [^;]+) ;")
 remove substring using regex (TEMP"2","(;.*)")
 
 #String between the third and fourth semicolons:
-remove substring using regex (TEMP"3","^([^;]+ ; [^;]+ ; [^;]+) ;")
+remove substring using regex (TEMP"3","^([^;]+ ; [^;]+) ;")
 remove substring using regex (TEMP"3","(;.*)")
+
+#String between the third and fourth semicolons:
+remove substring using regex (TEMP"4","^([^;]+ ; [^;]+ ; [^;]+) ;")
+remove substring using regex (TEMP"4","(;.*)")
 set TEMP"1" in "dc"."subject"
 set TEMP"2" in "dc"."subject"
 set TEMP"3" in "dc"."subject"
