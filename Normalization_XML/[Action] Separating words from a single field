@@ -1,0 +1,13 @@
+
+
+
+#String before the first semicolon:
+^([^;]+);
+
+#String between the first and second semicolons:
+^[^;]+;([^;]+);
+
+
+#String between the second and third semicolons:
+^[^;]+;[^;]+;([^;]+);
+
