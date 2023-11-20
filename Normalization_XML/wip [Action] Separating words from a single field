@@ -6,11 +6,12 @@ rule "Splitting words"
 when
 exist "//*[local-name()='subject'][1]"
 then
-set TEMP"1" to xpath "//*[local-name()='subject'][1]"
-set TEMP"2" to xpath "//*[local-name()='subject'][1]"
-set TEMP"3" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';')]"
-set TEMP"4" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';')]"
-set TEMP"5" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';'), ';')]"
+set TEMP"1" to xpath "//*[local-name()='subject'][1][contains(., ';')]"
+set TEMP"2" to xpath "//*[local-name()='subject'][1][contains(., ';')]"
+set TEMP"3" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';')]"
+set TEMP"4" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';')]"
+set TEMP"5" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';')]"
+set TEMP"6" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';'), ';')]"
 
 
 #String before the first semicolon
