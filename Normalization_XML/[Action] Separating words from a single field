@@ -17,7 +17,7 @@ set TEMP"5" to xpath "//*[local-name()='subject'][1]"
 remove substring using regex (TEMP"1","(;.*)")
 
 #String between the second and third semicolons:
-remove substring using regex (TEMP"2","^([^;]+;[^;]+);")
+remove substring using regex (TEMP"2","^(.*);")
 remove substring using regex (TEMP"2","(;.*)")
 
 #String between the third and fourth semicolons:
