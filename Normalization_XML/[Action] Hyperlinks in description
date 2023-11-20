@@ -1,0 +1,25 @@
+###############################################################################################################
+#
+# This rule adds some text and a hyperlink at the bottom of the description
+# In this example, the record contains the direct URL address which I then use to create the hyperlink. 
+# (As opposed to using a generic static URL).
+# Note: The target=\"_blank\" allows the link to open on a new tab
+#
+# !! DON'T FORGET !!
+# Primo VE normalization rules start from the bottom. If you want this to display at BOTTOM of the description,
+# then this need to be the 'highest' rule that relates to dc.description.
+# If you're not sure then just stick the rule at the very top
+#
+###############################################################################################################
+
+
+rule "for more details"
+when
+  true
+then
+
+  set TEMP"1" to xpath "//metadata//eadheader//eadid/@url"
+  add prefix (TEMP"1","<br><p>For more details please view <a href=\"")
+  add suffix (TEMP"1","\" target=\"_blank\">this record in the archives catalogue</a></p><br>")
+  set TEMP"1" in "dc"."description"
+end
