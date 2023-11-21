@@ -1,4 +1,19 @@
-
+####################################
+#
+# If the source record has multiple values in a single field, but is separated by a semicolon. 
+# This rule splits up those values and puts them into individual dc fields.
+#
+# e.g. 
+#  Before normalization:
+#  <subject>one ; two ; three ; four ; five ; six</subject>
+#
+#  After normalization:
+#  dc.subject: one
+#  dc.subject: two
+#  dc.subject: three
+#  etc.
+#
+##############################################################
 
 
 
@@ -6,6 +21,9 @@ rule "Splitting words"
 when
 exist "//*[local-name()='subject'][1][contains(., ';')]"
 then
+
+# The following uses some wild and overcomplicated xpath conditions to only run when there are x amount (or more) semicolons.
+# Without these conditions, the rules to remove the substrings would just run regardless and could pick out the wrong values
 set TEMP"1" to xpath "//*[local-name()='subject'][1][contains(., ';')]"
 set TEMP"2" to xpath "//*[local-name()='subject'][1][contains(., ';')]"
 set TEMP"3" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';')]"
@@ -13,33 +31,32 @@ set TEMP"4" to xpath "//*[local-name()='subject'][1][contains(., ';') and contai
 set TEMP"5" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';')]"
 set TEMP"6" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';'), ';')]"
 set TEMP"7" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';'), ';'), ';')]"
-set TEMP"8" to xpath "//*[local-name()='subject'][1][contains(., ';') and contains(substring-after(., ';'), ';') and contains(substring-after(substring-after(., ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';'), ';'), ';') and contains(substring-after(substring-after(substring-after(substring-after(substring-after(substring-after(., ';'), ';'), ';'), ';'), ';'), ';'), ';')]"
 
 
-
-#String before the first semicolon
+# Value before the first semicolon: [1];2;3;4;5;6;7
 remove substring using regex (TEMP"1","(;.*)")
 
-#String between the second and third semicolons:
-  remove substring using regex (TEMP"2","^.*?;")
-  remove substring using regex (TEMP"2","(;.*)")
+# Value between the first and second semicolons: 1;[2];3;4;5;6;7
+remove substring using regex (TEMP"2","^.*?;")
+remove substring using regex (TEMP"2","(;.*)")
 
-#String between the third and fourth semicolons:
+# Value between the second and third semicolons: 1;2;[3];4;5;6;7
 remove substring using regex (TEMP"3","^([^;]+;[^;]+);")
 remove substring using regex (TEMP"3","(;.*)")
 
-
-
-#String between the third and fourth semicolons:
+# Value between the third and fourth semicolons: 1;2;3;[4];5;6;7
 remove substring using regex (TEMP"4","^([^;]+;[^;]+;[^;]+);")
 remove substring using regex (TEMP"4","(;.*)")
 
+# Value between the fourth and fifth semicolons: 1;2;3;4;[5];6;7
 remove substring using regex (TEMP"5","^([^;]+;[^;]+;[^;]+;[^;]+);")
 remove substring using regex (TEMP"5","(;.*)")
 
+# Value between the fifth and sixth semicolons: 1;2;3;4;5;[6];7
 remove substring using regex (TEMP"6","^([^;]+;[^;]+;[^;]+;[^;]+;[^;]+);")
 remove substring using regex (TEMP"6","(;.*)")
 
+# Value between the sixth and seventh semicolons: 1;2;3;4;5;6;[7]
 remove substring using regex (TEMP"7","^([^;]+;[^;]+;[^;]+;[^;]+;[^;]+;[^;]+);")
 remove substring using regex (TEMP"7","(;.*)")
 
@@ -52,4 +69,4 @@ set TEMP"5" in "dc"."subject"
 set TEMP"6" in "dc"."subject"
 set TEMP"7" in "dc"."subject"
 end
-<subject>one ; two ; three ; four ; five ; six</subject>
+
