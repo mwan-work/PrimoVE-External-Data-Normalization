@@ -1,4 +1,4 @@
-####################################
+######################################################################################################
 #
 # If the source record has multiple values in a single field, but is separated by a semicolon. 
 # This rule splits up those values and puts them into individual dc fields.
@@ -13,7 +13,7 @@
 #  dc.subject: three
 #  etc.
 #
-##############################################################
+######################################################################################################
 
 
 
