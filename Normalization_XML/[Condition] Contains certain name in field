@@ -1,10 +1,10 @@
-############################
+######################################################################################################
 #
 # This rule looks for the word 'Main' within the 'physloc' element in record, ignoring case sensitivity 
 # If the word Main exists, then it will set the value 'Main Library' in a local field
 # Useful if the source data is inconsistent
 #
-###############################
+######################################################################################################
 
 
 rule "Detect name"
