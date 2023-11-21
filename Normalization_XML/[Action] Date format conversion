@@ -56,6 +56,10 @@ then
   replace string by string (TEMP"1","/1th","1st")
   replace string by string (TEMP"1","/2th","2nd")
   replace string by string (TEMP"1","/3th","3rd")
+  replace string by string (TEMP"1","/21th","21st")
+  replace string by string (TEMP"1","/22th","22nd")
+  replace string by string (TEMP"1","/23th","23rd")
+  replace string by string (TEMP"1","/31th","31st")
   remove substring using regex (TEMP"1","^/")
 
   #Month value into TEMP2
