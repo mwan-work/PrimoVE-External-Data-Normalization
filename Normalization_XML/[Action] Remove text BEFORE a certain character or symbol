@@ -2,6 +2,7 @@
 #
 # Remove everything BEFORE a comma
 #
+# e.g. Smith, John -> , John
 #########################################################################################################################################################
 
 rule "Remove everything before a comma"
@@ -18,6 +19,7 @@ end
 #
 # Remove everything BEFORE a comma, including the comma itself
 #
+# e.g. Smith, John -> John
 #########################################################################################################################################################
 
 rule "Remove comma and everything before it"
